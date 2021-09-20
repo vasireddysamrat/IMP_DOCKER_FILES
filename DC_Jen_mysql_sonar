@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   jenkins:
     image: jenkins/jenkins:lts
@@ -10,6 +10,24 @@ services:
     volumes:
       - /var/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+      
+#SQL DB & httpd
+version: '3'
+services:
+   web:
+     image: httpd
+      ports:
+      -"3333:80"
+	
+	 db:
+    image: mysql
+    ports:
+    - 3386
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+
+ #Postgres DB & Sonarqube     
+      
   postgres:
     image: postgres:9.6
     networks:
